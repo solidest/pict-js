@@ -1,0 +1,3 @@
+[submodule "ms_pict"]
+	path = ms_pict
+	url = https://github.com/microsoft/pict.git
