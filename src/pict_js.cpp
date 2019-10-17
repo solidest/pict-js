@@ -2,6 +2,7 @@
 
 #include "task.h"
 #include "model.h"
+#include "parameter.h"
 
 using namespace Napi;
 
@@ -22,6 +23,7 @@ using namespace Napi;
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
     Task::Init(env, exports);
     Model::Init(env, exports);
+    Parameter::Init(env, exports);
     return exports;
 }
 

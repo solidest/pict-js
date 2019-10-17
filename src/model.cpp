@@ -1,5 +1,6 @@
 
 #include "model.h"
+#include "parameter.h"
 
 using namespace Napi;
 
@@ -58,7 +59,10 @@ Napi::Value Model::AddParameter(const Napi::CallbackInfo &info)
         res = PictAddParameter(this->_model, valueCount, randomOrder ? PICT_DEFAULT_RANDOM_SEED : PICT_PAIRWISE_GENERATION);
     }
 
-    return Napi::Boolean::New(env, res!=nullptr);
+    if(res==nullptr) {
+        return env.Null();
+    }
+    return Parameter::NewInstance(env, res, valueCount);
 }
 
 PICT_HANDLE Model::Get() {

@@ -5,7 +5,7 @@
 ** Login   <>
 **
 ** Started on  Wed Oct 16 3:56:16 PM 2019 solidest
-** Last update Wed Oct 16 3:56:16 PM 2019 solidest
+** Last update Fri Oct 17 5:55:34 PM 2019 solidest
 */
 
 #ifndef _MODEL_H_
@@ -20,7 +20,6 @@ class Model : public Napi::ObjectWrap<Model> {
     Model(const Napi::CallbackInfo &info);
     virtual void Finalize(Napi::Env env);
     PICT_HANDLE Get();
-    PICT_HANDLE GetModel();
     Napi::Value AddParameter(const Napi::CallbackInfo &info);
 
   private:
