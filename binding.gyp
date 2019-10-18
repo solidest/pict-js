@@ -5,7 +5,7 @@
       'sources': [ '<!@(ls -1 ./src/*.cpp)', '<!@(ls -1 ./ms_pict/api/*.cpp)'],
       'include_dirs': ["<!@(node -p \"require('node-addon-api').include\")", ],
       'dependencies': ["<!(node -p \"require('node-addon-api').gyp\")"],
-      'cflags_cc': [ '-fPIC', '-std=c++11', '-fno-exceptions', '-M', '-fpermissive' ],
+      'cflags_cc': [ '-fPIC', '-std=c++11', '-fno-exceptions', '-w', '-fpermissive' ],
       'cflags_cc!': ['-fno-exceptions'],
       'cflags!': [ '-fno-exceptions' ],
       'xcode_settings': {
