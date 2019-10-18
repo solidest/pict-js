@@ -37,12 +37,12 @@ function testBasic()
 
     let ress = task.Generate();
     assert.ok(ress);
-    console.log(ress.length);
+    console.log(`Results:(${ress.length})`);
     for(let res of ress) {
         console.log(res);
     }
 
-    console.log(task, model);
+    console.log(task, model, p3);
 }
 
 assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
