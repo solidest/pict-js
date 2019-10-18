@@ -1,6 +1,6 @@
 
-#include "parameter.h"
-#include "model.h"
+#include "jsparameter.h"
+#include "jsmodel.h"
 
 using namespace Napi;
 

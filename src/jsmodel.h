@@ -7,7 +7,7 @@
 ** Started on  Wed Oct 16 3:56:16 PM 2019 solidest
 ** Last update Sat Oct 18 9:26:58 AM 2019 solidest
 */
-
+#pragma once
 #ifndef _MODEL_H_
 # define _MODEL_H_
 

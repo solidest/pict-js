@@ -21,7 +21,7 @@ class Parameter : public Napi::ObjectWrap<Parameter> {
     Parameter(const Napi::CallbackInfo &info);
     virtual void Finalize(Napi::Env env);
     Napi::Value GetCount(const Napi::CallbackInfo &info);
-    PICT_H Get() {return this->_parameter;}
+    PICT_HANDLE Get() {return this->_parameter;}
 
   private:
     static Napi::FunctionReference constructor;

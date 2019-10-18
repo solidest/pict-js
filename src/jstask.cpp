@@ -1,7 +1,7 @@
 
-#include "task.h"
-#include "model.h"
-#include "parameter.h"
+#include "jstask.h"
+#include "jsmodel.h"
+#include "jsparameter.h"
 
 using namespace Napi;
 
@@ -74,7 +74,7 @@ Napi::Value Task::AddExclusion(const Napi::CallbackInfo &info)
         return env.Null();
     }
     auto arrs = info[0].As<Napi::Array>();
-    auto len = arrs.Length()/2;
+    int len = arrs.Length()/2;
     auto excs = new PICT_EXCLUSION_ITEM[len];
     for(int i=0; i<len; i++) {
         auto p = Napi::ObjectWrap<Parameter>::Unwrap(static_cast<Napi::Value>(arrs[(uint32_t)i*2]).As<Napi::Object>())->Get();
@@ -118,7 +118,7 @@ Napi::Value Task::AddSeed(const Napi::CallbackInfo &info)
         return env.Null();
     }
     auto arrs = info[0].As<Napi::Array>();
-    auto len = arrs.Length()/2;
+    int len = arrs.Length()/2;
     auto seeds = new PICT_SEED_ITEM[len];
     for(int i=0; i<len; i++) {
         auto p = Napi::ObjectWrap<Parameter>::Unwrap(static_cast<Napi::Value>(arrs[(uint32_t)i*2]).As<Napi::Object>())->Get();

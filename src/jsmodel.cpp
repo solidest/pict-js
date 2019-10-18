@@ -1,11 +1,12 @@
 
-#include "model.h"
-#include "parameter.h"
+#include "jsmodel.h"
+#include "jsparameter.h"
 
 using namespace Napi;
 
 
 Napi::FunctionReference Model::constructor;
+
 
 Model::Model(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Model>(info) {
     this->_model = PictCreateModel();

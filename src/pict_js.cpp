@@ -1,8 +1,8 @@
 #include <napi.h>
 
-#include "task.h"
-#include "model.h"
-#include "parameter.h"
+#include "jstask.h"
+#include "jsmodel.h"
+#include "jsparameter.h"
 
 using namespace Napi;
 
