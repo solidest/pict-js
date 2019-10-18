@@ -1,6 +1,7 @@
 
 const {PictTask, PictModel} = require("./lib/binding.js");
 const assert = require("assert");
+const Pict= require('./src/pict')
 
 assert(PictTask, "The expected class is undefined");
 assert(PictModel, "The expected class is undefined");
@@ -43,6 +44,18 @@ function testBasic()
     }
 
     console.log(task, model, p3);
+
+    let paras = {};
+    paras["工作模式"] = ['制冷', '制热', '除湿'];
+    paras["传感器正常"] = [true, false];
+    paras["设置温度"] = [15, 16, 17, 31, 32, 33];
+    paras["室内温度"] = [13, 17, 19, 35];
+
+    const pict = new Pict(paras);
+    let resuls = pict.Generate("传感器正常 and 设置温度<=室内温度+2");
+    for (let row of resuls) {
+        console.log(row);
+    }
 }
 
 assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
