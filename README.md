@@ -6,15 +6,15 @@
 git clone https://github.com/solidest/pict-js.git
 cd pict-js
 git clone https://github.com/microsoft/pict.git ms_pict
-cnpm install
+npm install
 ```
 
-## 编译
+## 重新编译
 ```
 node-gyp rebuild
 ```
 
-## 测试
+## 执行测试
 ```
 node test.js
 ```
