@@ -49,15 +49,22 @@ function testBasic()
     paras["工作模式"] = ['制冷', '制热', '除湿'];
     paras["传感器正常"] = [true, false];
     paras["设置温度"] = [15, 16, 17, 31, 32, 33];
-    paras["室内温度"] = [13, 17, 19, 35];
+    paras["室内温度"] = [13, 17, 15, 19, 31];
 
     const pict = new Pict(paras);
-    let resuls = pict.Generate("传感器正常 and 设置温度<=室内温度+2");
-    for (let row of resuls) {
+    let result1 = pict.Generate("传感器正常 and 设置温度<=室内温度+2");
+    for (let row of result1) {
+        console.log(row);
+    }
+    let result2 = pict.Generate("设置温度==室内温度+2 and ~传感器正常");
+    //...
+    console.log("===================")
+    for(let row of result2) {
         console.log(row);
     }
 }
 
-assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
+testBasic();
+//assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
 
 console.log("Tests passed- everything looks OK!");

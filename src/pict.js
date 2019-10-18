@@ -55,23 +55,19 @@ function parseParaList(ast) {
 class Pict {
 
     constructor(paras, wise = 2) {
-        this.raw_paras = paras;
-        this.wise = wise;
-        
+
+        this.wise = wise;        
         let lparas = [];
         let nparas = {};
         let pcount = 0;
-        let model = new PictModel();
-
-
+        
         //整理一份参数引用数组
         for (let p in paras) {
             let len = paras[p].length;
             let para = {
                 name: p,
                 len: len,
-                values: paras[p],
-                ref: model.AddParameter(len, wise),
+                values: paras[p]
             };
             lparas.push(para);
             nparas[p] = para;
@@ -81,13 +77,17 @@ class Pict {
         this.pcount = pcount;
         this.lparas = lparas;
         this.nparas = nparas;
-        this.model = model;
     }
 
     Generate(condition = null) {
 
         let task = new PictTask();
-        task.SetRootModel(this.model);
+        let model = new PictModel();
+        task.SetRootModel(model);
+
+        for(let p of this.lparas) {
+            p.ref = model.AddParameter(p.len, this.wise);
+        }
 
         //约束求解
         if (condition) {
@@ -96,7 +96,7 @@ class Pict {
             let len = uparas.length;
             let pvs = [];
             for(let pname of uparas) {
-                pvs.push(this.raw_paras[pname]);
+                pvs.push(this.nparas[pname].values);
             }
             if(len>0) {
                 let ctxs = product(pvs);
