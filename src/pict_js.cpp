@@ -7,10 +7,10 @@
 using namespace Napi;
 
     // _PictCreateTask
-    // PictAddExclusion
-    // PictAddSeed
+    // _PictAddExclusion
+    // _PictAddSeed
     // PictGenerate
-    // PictAttachChildModel
+    // _PictAttachChildModel
     // PictResetResultFetching
     // PictGetNextResultRow
     // _PictSetRootModel

@@ -13,6 +13,7 @@
 #include <napi.h>
 #include "../ms_pict/api/pictapi.h"
 
+#include <iostream>
 
 
 class Task : public Napi::ObjectWrap<Task> {
@@ -22,6 +23,9 @@ class Task : public Napi::ObjectWrap<Task> {
     virtual void Finalize(Napi::Env env);
     Napi::Value SetRootModel(const Napi::CallbackInfo &info);
     Napi::Value GetTotalParameterCount(const Napi::CallbackInfo &info);
+    Napi::Value AddExclusion(const Napi::CallbackInfo &info);
+    Napi::Value AddSeed(const Napi::CallbackInfo &info);
+    Napi::Value Generate(const Napi::CallbackInfo &info);
 
   private:
     static Napi::FunctionReference constructor;
