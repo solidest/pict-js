@@ -1,7 +1,7 @@
 
 const {PictTask, PictModel} = require("./lib/binding.js");
 const assert = require("assert");
-const Pict= require('./src/pict')
+const Pict= require('./src/pict');
 
 assert(PictTask, "The expected class is undefined");
 assert(PictModel, "The expected class is undefined");
