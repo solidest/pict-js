@@ -68,6 +68,6 @@ function testBasic()
 }
 
 testBasic();
-//assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
+assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
 
 console.log("Tests passed- everything looks OK!");
