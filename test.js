@@ -67,7 +67,7 @@ function testBasic()
     console.log("all results:", result3.length);
 }
 
-testBasic();
+//testBasic();
 assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
 
 console.log("Tests passed- everything looks OK!");
