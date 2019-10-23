@@ -85,8 +85,15 @@ class Pict {
         let model = new PictModel();
         task.SetRootModel(model);
 
+        let wise = this.wise;
+        if(wise===0) {
+            wise = this.lparas.length;
+        } else if(wise>this.lparas.length) {
+            wise = this.lparas.length;
+        }
+
         for(let p of this.lparas) {
-            p.ref = model.AddParameter(p.len, this.wise);
+            p.ref = model.AddParameter(p.len, wise);
         }
 
         //约束求解

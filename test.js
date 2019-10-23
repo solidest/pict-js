@@ -51,17 +51,20 @@ function testBasic()
     paras["设置温度"] = [15, 16, 17, 31, 32, 33];
     paras["室内温度"] = [13, 17, 15, 19, 31];
 
-    const pict = new Pict(paras);
+    const pict = new Pict(paras, 0);
     let result1 = pict.Generate("传感器正常 and 设置温度<=室内温度+2");
+    console.log(result1.length, "===================")
     for (let row of result1) {
         console.log(row);
     }
     let result2 = pict.Generate("设置温度==室内温度+2 and ~传感器正常");
     //...
-    console.log("===================")
+    console.log(result2.length, "===================")
     for(let row of result2) {
         console.log(row);
     }
+    let result3 = pict.Generate();
+    console.log("all results:", result3.length);
 }
 
 testBasic();
