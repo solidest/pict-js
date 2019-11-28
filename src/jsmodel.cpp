@@ -13,8 +13,14 @@ Model::Model(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Model>(info) {
 }
 
 void Model::Finalize(Napi::Env env){
-    PictDeleteModel(this->_model);
-    this->_model = NULL;
+    if(this->_model) {
+        PictDeleteModel(this->_model);
+        this->_model = NULL;        
+    }
+}
+
+Napi::Value Model::Close(const Napi::CallbackInfo &info) {
+    this->Finalize(info.Env());
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -104,6 +110,7 @@ Napi::Object Model::Init(Napi::Env env, Napi::Object exports) {
     Napi::Function func = DefineClass(env, "PictModel", {
         InstanceMethod("AddParameter", &Model::AddParameter),
         InstanceMethod("AttachChildModel", &Model::AttachChildModel),
+        InstanceMethod("Close", &Model::Close),
     });
 
     constructor = Napi::Persistent(func);

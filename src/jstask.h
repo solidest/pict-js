@@ -5,7 +5,7 @@
 ** Login   <>
 **
 ** Started on  Wed Oct 16 2:53:32 PM 2019 solidest
-** Last update Thu Oct 16 3:32:51 PM 2019 solidest
+** Last update Fri Nov 28 10:28:24 AM 2019 solidest
 */
 #ifndef _TASK_H_
 #define _TASK_H_
@@ -26,6 +26,7 @@ class Task : public Napi::ObjectWrap<Task> {
     Napi::Value AddExclusion(const Napi::CallbackInfo &info);
     Napi::Value AddSeed(const Napi::CallbackInfo &info);
     Napi::Value Generate(const Napi::CallbackInfo &info);
+    Napi::Value Close(const Napi::CallbackInfo &info);
 
   private:
     static Napi::FunctionReference constructor;

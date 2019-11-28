@@ -5,7 +5,7 @@
 ** Login   <>
 **
 ** Started on  Wed Oct 16 3:56:16 PM 2019 solidest
-** Last update Sat Oct 18 9:26:58 AM 2019 solidest
+** Last update Fri Nov 28 10:25:17 AM 2019 solidest
 */
 #pragma once
 #ifndef _MODEL_H_
@@ -22,6 +22,7 @@ class Model : public Napi::ObjectWrap<Model> {
     PICT_HANDLE Get();
     Napi::Value AddParameter(const Napi::CallbackInfo &info);
     Napi::Value AttachChildModel(const Napi::CallbackInfo &info);
+    Napi::Value Close(const Napi::CallbackInfo &info);
 
   private:
     static Napi::FunctionReference constructor;

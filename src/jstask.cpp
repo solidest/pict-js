@@ -13,9 +13,16 @@ Task::Task(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Task>(info) {
 }
 
 void Task::Finalize(Napi::Env env){
-    PictDeleteTask(this->_task);
-    this->_task = NULL;
+    if(this->_task) {
+        PictDeleteTask(this->_task);
+        this->_task = NULL;       
+    }
 }
+
+Napi::Value Task::Close(const Napi::CallbackInfo &info) {
+    this->Finalize(info.Env());
+}
+
 
 // ////////////////////////////////////////////////////////////////////////////
 //
@@ -195,6 +202,7 @@ Napi::Object Task::Init(Napi::Env env, Napi::Object exports) {
         InstanceMethod("AddExclusion", &Task::AddExclusion),
         InstanceMethod("AddSeed", &Task::AddSeed),
         InstanceMethod("Generate", &Task::Generate),
+        InstanceMethod("Close", &Task::Close),
     });
 
     constructor = Napi::Persistent(func);
