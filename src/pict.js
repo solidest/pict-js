@@ -4,6 +4,7 @@ const {
 } = require("../build/Release/pict_js-native");
 const BinParser = require('./parser/BinParser');
 
+
 //生成笛卡尔集合
 function product(elements) {
     if (!Array.isArray(elements)) {
@@ -63,11 +64,12 @@ class Pict {
         
         //整理一份参数引用数组
         for (let p in paras) {
-            let len = paras[p].length;
+            let len = paras[p].values.length;
             let para = {
                 name: p,
                 len: len,
-                values: paras[p]
+                values: paras[p].values,
+                weights: paras[p].weights,
             };
             lparas.push(para);
             nparas[p] = para;
@@ -79,21 +81,10 @@ class Pict {
         this.nparas = nparas;
     }
 
-    Generate(condition = null) {
-
-        let task = new PictTask();
-        let model = new PictModel();
-        task.SetRootModel(model);
-
-        let wise = this.wise;
-        if(wise===0) {
-            wise = this.lparas.length;
-        } else if(wise>this.lparas.length) {
-            wise = this.lparas.length;
-        }
+    _Generate(task, model, condition) {
 
         for(let p of this.lparas) {
-            p.ref = model.AddParameter(p.len, wise);
+            p.ref = model.AddParameter(p.len, this.wise, p.weights);
         }
 
         //约束求解
@@ -125,7 +116,7 @@ class Pict {
                 }
             }
         }
-
+        
         //生成结果
         let rows = task.Generate();
         let res = [];
@@ -140,6 +131,23 @@ class Pict {
         }
         return res;
 
+    }
+
+    Generate(condition = null) {
+
+        let task = new PictTask();
+        let model = new PictModel();
+        task.SetRootModel(model);
+
+        let res = null;
+        try {
+            res = this._Generate(task, model, condition);
+        } catch (error) {
+            console.log(error)
+        }
+        task.Close();
+        model.Close();
+        return res;
     }
 }
 

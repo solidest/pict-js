@@ -46,10 +46,10 @@ function testBasic()
     console.log(task, model, p3);
 
     let paras = {};
-    paras["工作模式"] = ['制冷', '制热', '除湿'];
-    paras["传感器正常"] = [true, false];
-    paras["设置温度"] = [15, 16, 17, 31, 32, 33];
-    paras["室内温度"] = [13, 17, 15, 19, 31];
+    paras["工作模式"] = {values:['制冷', '制热', '除湿'], weights:[1,1,1]};
+    paras["传感器正常"] = {values:[true, false], weights:[1,2]};
+    paras["设置温度"] = {values:[15, 16, 17, 31, 32, 33], weights:[1,1,1,1,1,1]};
+    paras["室内温度"] = {values:[13, 17, 15, 19, 31], weights:[1,1,1,1,1]};
 
     const pict = new Pict(paras, 0);
     let result1 = pict.Generate("传感器正常 and 设置温度<=室内温度+2");
@@ -67,7 +67,7 @@ function testBasic()
     console.log("all results:", result3.length);
 }
 
-//testBasic();
-assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
+testBasic();
+//assert.doesNotThrow(testBasic, undefined, "testBasic threw an expection");
 
 console.log("Tests passed- everything looks OK!");
