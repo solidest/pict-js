@@ -20,7 +20,11 @@ void Model::Finalize(Napi::Env env){
 }
 
 Napi::Value Model::Close(const Napi::CallbackInfo &info) {
-    this->Finalize(info.Env());
+    if(this->_model) {
+        PictDeleteModel(this->_model);
+        this->_model = NULL;        
+    }
+    return info.Env().Null();
 }
 
 // ////////////////////////////////////////////////////////////////////////////

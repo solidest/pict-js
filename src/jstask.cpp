@@ -20,7 +20,11 @@ void Task::Finalize(Napi::Env env){
 }
 
 Napi::Value Task::Close(const Napi::CallbackInfo &info) {
-    this->Finalize(info.Env());
+    if(this->_task) {
+        PictDeleteTask(this->_task);
+        this->_task = NULL;       
+    }
+    return info.Env().Null();
 }
 
 

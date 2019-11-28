@@ -116,7 +116,7 @@ class Pict {
                 }
             }
         }
-        
+
         //生成结果
         let rows = task.Generate();
         let res = [];
