@@ -47,3 +47,5 @@ for(let row of result2) {
 */
 
 ```
+
+更多API使用方法，请参看test.js文件
