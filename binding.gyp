@@ -2,7 +2,8 @@
   'targets': [
     {
       'target_name': 'pict_js-native',
-      'sources': [ '<!@(ls -1 ./src/*.cpp)', '<!@(ls -1 ./ms_pict/api/*.cpp)'],
+      'sources': [ '<!@(dir .\\src\\*.cpp)', '<!@(dir .\\ms_pict\\api\\*.cpp)'], #windows
+      # 'sources': [ '<!@(ls -1 ./src/*.cpp)', '<!@(ls -1 ./ms_pict/api/*.cpp)'], #linux
       'include_dirs': ["<!@(node -p \"require('node-addon-api').include\")", ],
       'dependencies': ["<!(node -p \"require('node-addon-api').gyp\")"],
       'cflags_cc': [ '-fPIC', '-std=c++11', '-fno-exceptions', '-w', '-fpermissive' ],
